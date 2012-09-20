@@ -1,0 +1,70 @@
+application: flickr2weibo
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+libraries:
+- name: PIL
+  version: latest
+- name: webob
+  version: latest
+  
+  
+handlers:
+
+- url: /auth
+  script: auth.application
+  
+- url: /sync
+  script: flickrlist.application  
+  
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+    
+- url: /static/images
+  static_dir: static/images  
+  
+- url: /images
+  static_dir: static/images
+  
+- url: /scripts
+  static_dir: static/scripts
+    
+- url: /stylesheets
+  static_dir: static/stylesheets
+    
+- url: /html
+  static_dir: html
+  
+- url: /new
+  script: new.application
+  
+- url: /login
+  script: login.application
+  
+- url: /flickrlist
+  script: flickrlist.application
+    
+- url: /logout
+  script: logout.application
+  
+- url: /post
+  script: post.application
+  
+- url: /weibocallback
+  script: weibocallback.application
+    
+- url: /flickrcallback
+  script: flickrcallback.application
+  
+- url: /setting
+  script: setting.application
+  
+- url: /(.*\.(html))
+  static_files: html/\1
+  upload: html/(.*\.(html))
+  
+- url: .*
+  script: main.application

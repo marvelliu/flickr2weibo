@@ -1,0 +1,4 @@
+cron:
+- description: daily summary job
+  url: /sync?nickname=marvel
+  schedule: every 10 minutes
